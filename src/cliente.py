@@ -1,5 +1,6 @@
 import ssl
 import socket
+from time import sleep
 
 # Configuração do cliente HTTPS
 def https_client(host='127.0.0.1', port=8443):
@@ -11,7 +12,13 @@ def https_client(host='127.0.0.1', port=8443):
         with context.wrap_socket(sock, server_hostname=host) as secure_socket:
             print(f"Conectado ao servidor HTTPS em {host}:{port}")
             
-            for _ in range(5):
-                response = secure_socket.recv(1024)
-                print(f"Resposta do servidor:\n{response.decode()}")
-                secure_socket.sendall(b"Recebido com sucesso")
+            for i in range(10):
+                file_name = f"html_{i}.html"
+                request = f"GET /{file_name} HTTP/1.1\r\nHost: {host}\r\n\r\n"
+                secure_socket.sendall(request.encode())
+
+                response = secure_socket.recv(4096)
+                print(f"Resposta do servidor ({file_name}):\n{response.decode()}\n")
+                sleep(1)
+            
+            secure_socket.close()

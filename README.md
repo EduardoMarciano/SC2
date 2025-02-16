@@ -1,13 +1,8 @@
 ## Project Structure
 
-Client and Server module code is located in the src directory.
-The documentation is in the same directory, in a Jupyter Notebook named htttps.ipynb. (Only Available in Portuguese)
+The Client, Server, and AC module codes are located in the src directory
 
-You can run the Jupyter Notebook using the following command:
-
-    jupyter notebook
-
-Or by using the VSCode extension or any other plugins available in your current IDE.
+The documentation is located in the doc directory. (Only available in Portuguese.)
 
 ## Prerequisites
 
